@@ -19,8 +19,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleContinueShopping = (e) => {
-    e.preventDefault();
-    setShowCart(false);
+    onContinueShopping();
   };
 
   const handleCheckoutShopping = (e) => {
@@ -28,20 +27,19 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleIncrement = (item) => {
-    dispatch(updateQuantity({...item,quantity: item.quantity + 1}));
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
-        dispatch(updateQuantity({...item,quantity: item.quantity - 1}));
+      dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 })); // Pass name and new quantity
     } else {
-        dispatch(removeItem(item));
+      dispatch(removeItem(item.name)); // If quantity is 0, remove the item
     }
-    
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem);
+    dispatch(removeItem(item));
   };
 
   // Calculate total cost based on quantity for an item
@@ -80,7 +78,7 @@ const CartItem = ({ onContinueShopping }) => {
       </div>
     </div>
         ) : (
-            <ProductList onContinueShopping={handleContinueShopping}/>
+            <ProductList />
             )}
     </>
 
