@@ -289,7 +289,7 @@ const isProductInCart = (plantName) => {
             <div className="product-grid">
                 {plantsArray.map((category,index) => (
                     <div key={index}>
-                        <h1 className="plant_heading plantname_heading"><div>{category.category}</div></h1>
+                        <h1 className="plantname_heading"><div className='plant_heading'>{category.category}</div></h1>
                         <div className="product-list">
                             {category.plants.map((plant,plantIndex) => (
                                 <div className="product-card" key={plantIndex}>
